@@ -24,3 +24,6 @@
 * Create a mock container and init the Phue Client object.
 * Create a `src/Command/` directory.
 * Create a `GetLightsCommand` Command class.
+* TAG: 0.2.0 = simple command to get lights.
+
+* Add better error handling and create a 'turn on' command.

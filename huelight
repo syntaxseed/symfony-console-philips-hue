@@ -13,6 +13,7 @@ $container['phue'] = new Client('192.168.1.2', 'Se5sEWE5Lin30rOu5zNG0K7acvZZuNPp
 
 // Register Commands
 $app->add(new App\Command\GetLightsCommand($container['phue']));
+$app->add(new App\Command\TurnCommand($container['phue']));
 
 // Run it
 $app->run();
