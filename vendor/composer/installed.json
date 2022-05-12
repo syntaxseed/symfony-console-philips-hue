@@ -668,6 +668,78 @@
                 }
             ],
             "install-path": "../symfony/string"
+        },
+        {
+            "name": "syntaxseed/phue",
+            "version": "v1.8.5",
+            "version_normalized": "1.8.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/syntaxseed/phue.git",
+                "reference": "00e775234fed0fc95d4b0500eb97f0c27abb6508"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/syntaxseed/phue/zipball/00e775234fed0fc95d4b0500eb97f0c27abb6508",
+                "reference": "00e775234fed0fc95d4b0500eb97f0c27abb6508",
+                "shasum": ""
+            },
+            "require": {
+                "php": "7.4.*|8.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "1.*",
+                "phpunit/phpunit": "9.*"
+            },
+            "suggest": {
+                "ext-curl": "Allows usage of cURL transport adapter"
+            },
+            "time": "2022-04-22T14:42:40+00:00",
+            "bin": [
+                "bin/phue-create-user",
+                "bin/phue-bridge-finder",
+                "bin/phue-light-finder",
+                "bin/phue-list-lights"
+            ],
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Phue": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Squires",
+                    "email": "sqmk@php.net",
+                    "role": "lead"
+                },
+                {
+                    "name": "Jens Reinemuth",
+                    "email": "jens@reinemuth.rocks",
+                    "role": "developer"
+                },
+                {
+                    "name": "Sherri Wheeler",
+                    "role": "developer"
+                }
+            ],
+            "description": "Phue - Philips Hue PHP client - Fork by SyntaxSeed - extra features, bug fixes.",
+            "homepage": "https://github.com/syntaxseed/Phue",
+            "keywords": [
+                "client",
+                "hue",
+                "philips",
+                "phue"
+            ],
+            "support": {
+                "source": "https://github.com/syntaxseed/phue/tree/v1.8.5"
+            },
+            "install-path": "../syntaxseed/phue"
         }
     ],
     "dev": true,

@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+
+if (is_file(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+} else {
+    require_once __DIR__ . '/../../../autoload.php';
+}
+
+// Show usage if host and username not passed
+if (!isset($argv[1], $argv[2])) {
+    echo "Philips Hue Light Lister", "\n\n",
+         "Usage:", "\n",
+         "  <host> <username>", "\n\n";
+    exit(1);
+}
+
+// Initialize client
+$client = new \Phue\Client($argv[1], $argv[2]);
+
+echo "Testing connection to bridge at {$client->getHost()}", "\n";
+
+try {
+    $client->sendCommand(
+        new \Phue\Command\Ping
+    );
+} catch (\Phue\Transport\Exception\ConnectionException $e) {
+    echo "Issue connecting to bridge", "\n";
+
+    exit(1);
+}
+
+// Quit if user is not authenticated
+if (!$client->sendCommand(new \Phue\Command\IsAuthorized)) {
+    echo "{$client->getUsername()} is not authenticated with the bridge. Aborting.", "\n\n";
+
+    exit(1);
+}
+
+echo "List of lights:", "\n";
+
+foreach ($client->getLights() as $light) {
+    echo "\t", "#{$light->getId()} - ", $light->isOn() ? 'On' : 'Off',
+         " - {$light->getName()} - {$light->getModel()}", "\n";
+}

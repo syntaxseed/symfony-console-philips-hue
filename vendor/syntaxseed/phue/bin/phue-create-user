@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+
+if (is_file(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+} else {
+    require_once __DIR__ . '/../../../autoload.php';
+}
+
+// Show usage if host is not passed
+if (!isset($argv[1])) {
+    echo "Philips Hue User Creator", "\n\n",
+         "Usage:", "\n",
+         "  <host>", "\n\n";
+    exit(1);
+}
+
+// Initialize client
+$client = new \Phue\Client($argv[1]);
+
+echo "Testing connection to bridge at {$client->getHost()}", "\n";
+
+try {
+    $client->sendCommand(
+        new \Phue\Command\Ping
+    );
+} catch (\Phue\Transport\Exception\ConnectionException $e) {
+    echo "Issue connecting to bridge", "\n";
+
+    exit(1);
+}
+
+echo "Attempting to create user:", "\n",
+     "Press the Bridge's button!", "\n",
+     "Waiting.";
+
+// Try X times to create user
+$maxTries = 30;
+for ($i = 1; $i <= $maxTries; ++$i) {
+    try {
+        $response = $client->sendCommand(
+            new \Phue\Command\CreateUser
+        );
+
+        echo "\n\n", "Successfully created new user: {$response->username}", "\n\n";
+
+        break;
+    } catch (\Phue\Transport\Exception\LinkButtonException $e) {
+        echo ".";
+    } catch (Exception $e) {
+        echo "\n\n", "Failure to create user. Please try again!",
+             "\n", "Reason: {$e->getMessage()}", "\n\n";
+
+        break;
+    }
+
+    sleep(1);
+}
+
+exit(1);

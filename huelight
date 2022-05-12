@@ -1,10 +1,18 @@
 #!/usr/bin/env php
 <?php
 
+use \Phue\Client;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Init the Application
 $app = new Symfony\Component\Console\Application;
+
+// Mock Container
+$container['phue'] = new Client('192.168.1.2', 'Se5sEWE5Lin30rOu5zNG0K7acvZZuNPp0DHT3mfQ');
+
+// Register Commands
+$app->add(new App\Command\GetLightsCommand($container['phue']));
 
 // Run it
 $app->run();
