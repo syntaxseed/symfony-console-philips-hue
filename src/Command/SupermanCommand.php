@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace App\Command;
 
 use Phue\Client;
-use Phue\Command\GetLightById;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Phue\Transport\Exception\ResourceUnavailableException;
 
-final class TurnCommand extends Command
+final class SupermanCommand extends Command
 {
     private $phueClient;
     public function __construct(Client $phueClient)
@@ -23,28 +21,29 @@ final class TurnCommand extends Command
 
     protected function configure()
     {
-        $this->setName('turn');
-        $this->setDescription('Turn on or off the given light ID.');
-        $this->addArgument('state', InputArgument::REQUIRED, 'State of the light (on/off).');
-        $this->addArgument('id', InputArgument::REQUIRED, 'ID of the bulb to be turned on.');
+        $this->setName('superman');
+        $this->setDescription("Set the living room lights to red and blue.");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $state = $input->getArgument('state');
-        $id = intval($input->getArgument('id'));
 
         try {
-            $light = $this->phueClient->sendCommand(
-                new GetLightById($id)
-            );
+            $lights = $this->phueClient->getLights();
 
-            $light->setOn($state === 'on');
+            $lights[1]->setRGB(255, 0, 0); // Red
+            $lights[2]->setRGB(0, 0, 255); // Blue
+
+            $lights[1]->setBrightness(255);
+            $lights[2]->setBrightness(255);
+
+            $lights[1]->setOn(true);
+            $lights[2]->setOn(true);
 
         } catch (ResourceUnavailableException $e) {
-            $output->writeln("<error>Error: Light not found.</error>");
+            $output->writeln("<error>Error: Light(s) not found.</error>");
             return self::FAILURE;
-        } catch (\Throwable $e){
+        } catch (\Throwable $e) {
             $output->writeln("<error>Error: Connection or command failure.</error>");
             return self::FAILURE;
         }

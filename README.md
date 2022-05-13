@@ -26,4 +26,6 @@
 * Create a `GetLightsCommand` Command class.
 * TAG: 0.2.0 = simple command to get lights.
 
-* Add better error handling and create a 'turn on' command.
+* Add better error handling and create a 'turn on' command. This one takes in arguments.
+
+* Later commands - just show code as slides.
