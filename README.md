@@ -15,7 +15,7 @@
 
 * How to find your bridge and register a username.
   * `./vendor/syntaxseed/phue/bin/phue-bridge-finder`
-  * `./vendor/syntaxseed/phue/bin/phue-create-user 192.168.1.2
+  * `./vendor/syntaxseed/phue/bin/phue-create-user 192.168.1.2`
 
 * `composer require syntaxseed/phue`
 * Add the autoload section to the composer.json.
