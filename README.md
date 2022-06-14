@@ -1,31 +1,15 @@
-# Proposed Talk for Symfony World Live - Summer 2022
+# Talk for Symfony World Live - Summer 2022
 
-* https://live.symfony.com/2022-world-summer/
+* https://live.symfony.com/2022-world-summer/schedule#session-654
 
-## Script
+PHP isn't all work and no play... in fact there are a growing number of uses for PHP in the home automation industry. In this talk we'll create a basic app with Symfony Console then use an existing library to connect to and control a pair of Philips Hue smart light bulbs. From authorizing our application to talk to the bridge, to finding the lights available to the fun of switching their state, brightness, colour and more. This intermediate topic will expand the range of uses we can turn to PHP for.
 
-* Warn about flashing lights sensitivity.
+**Note for photosensitive viewers:** this talk contains flashing/blinking lights.
 
-* Briefly introduce the Symfony Console package.
-* Introduce the Phue package and my fork.
+**Slides:** /slides/Symfony-Console-and-Philips-Hue-Symfony-World-Summer2022.pdf
 
-* Start with an empty project.
-* `composer require symfony/console`
+> This repo contains the code we will write together during the talk, plus a bonus `superman` command that I had to cut for time.
+
 * TAG: 0.1.0 = empty symfony console application.
-
-* How to find your bridge and register a username.
-  * `./vendor/syntaxseed/phue/bin/phue-bridge-finder`
-  * `./vendor/syntaxseed/phue/bin/phue-create-user 192.168.1.2`
-
-* `composer require syntaxseed/phue`
-* Add the autoload section to the composer.json.
-  * `composer dump-autoload`
-
-* Create a mock container and init the Phue Client object.
-* Create a `src/Command/` directory.
-* Create a `GetLightsCommand` Command class.
 * TAG: 0.2.0 = simple command to get lights.
-
-* Add better error handling and create a 'turn on' command. This one takes in arguments.
-
-* Later commands - just show code as slides.
+* TAG: 0.3.0 = final version for talk. (Contains extra 'superman' command.)
