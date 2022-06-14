@@ -10,6 +10,9 @@ PHP isn't all work and no play... in fact there are a growing number of uses for
 
 > This repo contains the code we will write together during the talk, plus a bonus `superman` command that I had to cut for time.
 
-* TAG: 0.1.0 = empty symfony console application.
-* TAG: 0.2.0 = simple command to get lights.
-* TAG: 0.3.0 = final version for talk. (Contains extra 'superman' command.)
+## Repo Tags
+* v0.1.0 = empty symfony console application.
+* v0.2.0 = simple command to get lights.
+* v0.3.0 = improve error handling, add turn on command.
+* v0.4.0 = Add candle and superman commands.
+* v0.5.0 = final version for talk. (Contains extra 'superman' command.)
