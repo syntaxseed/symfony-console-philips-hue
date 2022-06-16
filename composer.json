@@ -1,4 +1,8 @@
 {
+    "name": "huelight",
+    "bin": [
+        "./huelight"
+    ],
     "require": {
         "symfony/console": "^6.0",
         "syntaxseed/phue": "^1.8"

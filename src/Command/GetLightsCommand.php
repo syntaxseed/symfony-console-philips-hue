@@ -6,6 +6,7 @@ namespace App\Command;
 
 use Phue\Client;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -29,9 +30,14 @@ final class GetLightsCommand extends Command
         try {
             $lights = $this->phueClient->getLights();
 
+            $table = new Table($output);
+            $table->setHeaders(['ID', 'Name']);
+
             foreach ($lights as $lightId => $light) {
-                $output->writeln("<info>Id #{$lightId} - {$light->getName()}</info>");
+                $table->addRows([[$lightId, $light->getName()]]);
             }
+            $table->render();
+
         } catch (\Throwable $e) {
             $output->writeln("<error>Error: Connection or command failure.</error>");
             return self::FAILURE;
